@@ -9,7 +9,7 @@ const con = mysql.createConnection({
     host:'127.0.0.1',
     user:'root',
     password:'',
-    database:'mun'
+    database:'mun',
 })
 
 con.connect((err)=>{
@@ -198,11 +198,11 @@ app.post("/fetchName", express.json(), (req, res) => {
     fetchNames(id);
 });
 
-
-app.listen(3000, (err) => {
+const port=3306;
+app.listen(port, (err) => {
     if (err) {
         console.log(err);
     } else {
-        console.log("Server is running on port 3000");
+        console.log("Server is running on port "+port);
     }
 });
