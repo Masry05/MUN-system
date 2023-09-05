@@ -1,0 +1,172 @@
+/* Reset some default styles */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a dark theme */
+body {
+    background-color: rgba(14, 14, 16, 255);
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+}
+
+.names {
+    width: 30%;
+    height: 30px;
+    border-width: 1px;
+    padding: 0px;
+    margin-right: 5px;
+}
+
+.names-button {
+    height: 32px;
+    width: 20%;
+    white-space: nowrap;
+    max-width: 90px;
+}
+
+.add-person {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    height: 5vh;
+}
+
+.dataContainer {
+    background-color: rgba(13, 13, 14, 1);
+    border: solid;
+    border-color: rgb(71, 155, 195);
+    border-radius: 2%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    min-height: 80vh;
+}
+
+.mainDataContainer {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.person {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    height: 45px;
+}
+
+.info {
+    display: flex;
+    width: 75%;
+}
+
+.id {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center ID text */
+    border: 1px solid grey;
+    width: 10%;
+    height: 100%;
+}
+
+.full_name {
+    display: flex;
+    border: 1px solid grey;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+.level {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid grey;
+    text-align: end;
+    width: 20%;
+    height: 100%;
+}
+
+.xp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid grey;
+    text-align: end;
+    width: 20%;
+    height: 100%;
+}
+
+.xp-settings {
+    text-align: center;
+    display: flex;
+    justify-content: start;
+    margin-left: 1%;
+}
+
+.xp-input {
+    width: 40%;
+}
+
+.add-button {
+    color: white;
+    background-color: rgb(41, 165, 41);
+    border-radius: 2px;
+    padding: 0px;
+    border-width: 0px;
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+}
+
+.add-button:hover {
+    background-color: rgb(23, 125, 23);
+}
+
+/* Style for the button */
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    padding: 0px;
+    border-width: 0px;
+    width: 25px;
+    height: 22px;
+    margin-left: 1px;
+    padding-left: 1px;
+    padding-top: 3px;
+    margin-left: 3px;
+}
+
+/* Hover effect */
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.delete {
+    margin-left: 10px;
+    text-align: center;
+    align-content: center;
+    border-radius: 2px;
+    padding: 0px;
+    border-width: 0px;
+    width: 30px;
+    height: 23px;
+    padding-top: 2px;
+    margin-left: 5px;
+    color: white;
+    background-color: rgb(215, 54, 54);
+}
+
+.delete:hover {
+    background-color: rgba(161, 15, 15, 0.793);
+}
