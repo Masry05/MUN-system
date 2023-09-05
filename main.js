@@ -6,10 +6,10 @@ const app=express()
 app.use(express.static("public"));
 
 const con = mysql.createConnection({
-    host:'127.0.0.1',
-    user:'root',
-    password:'',
-    database:'mun',
+    host:'sql8.freemysqlhosting.net',
+    user:'sql8644628',
+    password:'F2jGYKFJri',
+    database:'sql8644628',
 })
 
 con.connect((err)=>{
@@ -198,7 +198,7 @@ app.post("/fetchName", express.json(), (req, res) => {
     fetchNames(id);
 });
 
-const port=3306;
+const port=3000;
 app.listen(port, (err) => {
     if (err) {
         console.log(err);
