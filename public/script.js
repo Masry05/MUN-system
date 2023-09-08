@@ -155,6 +155,10 @@ document.getElementById("addNameButton").addEventListener("click", addName);
 
 
 function deletePerson(personId) {
+    flag = confirmPopUp("Delete");
+    console.log(flag)
+    //showConfirmation()
+    if(flag){
     // Create an object with the person's ID
     const data = { id: personId };
 
@@ -177,13 +181,14 @@ function deletePerson(personId) {
         console.error("Error deleting the person:", error);
     });
 }
+}
 
 
 function updateXP(personId) {
     xpField = document.getElementById("input"+personId)
     xpPlusValue = xpField.value
 
-    const digitPattern = /^\d+$/;
+    const digitPattern = /^-?\d+$/;
 
     if (digitPattern.test(xpPlusValue)){
 
@@ -212,29 +217,32 @@ function updateXP(personId) {
 }
 
 function resetXP(personId) {
+    flag = confirmPopUp("Reset XP");
+    console.log(flag)
+    //showConfirmation()
+    if(flag){
+    // Create an object with the person's ID
+    const data = { id: personId };
 
-        // Create an object with the person's ID
-        const data = { id: personId };
-
-        // Make an HTTP POST request to delete the person from the database
-        fetch("/resetXP", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Display a success message or handle the response as needed
-            console.log(data.message);
-            // After successfully deleting the person, fetch updated data
-            fetchData();
-        })
-        .catch(error => {
-            console.error("Error reseting the xp:", error);
-        });
-    
+    // Make an HTTP POST request to delete the person from the database
+    fetch("/resetXP", {
+         method: "POST",
+        headers: {
+           "Content-Type": "application/json",
+         },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Display a success message or handle the response as needed
+        console.log(data.message);
+        // After successfully deleting the person, fetch updated data
+        fetchData();
+    })
+    .catch(error => {
+        console.error("Error reseting the xp:", error);
+    });
+}
 }
 
 function CheckFields(field) {
@@ -256,8 +264,7 @@ function CheckXpFields(field) {
     
     const vl = field.value.replace(/ /g, "");
     
-    const digitPattern = /^\d+$/;
-
+    const digitPattern = /^-?\d+$/;
 
     if (digitPattern.test(vl)){
         field.style.borderColor = null;
@@ -322,5 +329,48 @@ function moving(event){
     }
 }
 
-//document.querySelector(".names-button").addEventListener("keydown", moving(event))
+function confirmPopUp(txt) {
+    switch (txt) {
+        case "Reset XP": 
+            msg = "Are you sure you want to reset the XP?";
+            break
+            
+        case "Delete": 
+            msg = "Are you sure you want to delete this user?";
+            break
+    }
+    // Display a confirmation dialog
+    if (confirm(msg)) {
+      // User clicked "OK," perform the delete operation
+      return true
+      // You can call your delete function or perform any other action here
+    } else {
+      // User clicked "Cancel" or closed the dialog, do nothing or handle accordingly
+      return false
+    }
+  }
 
+
+/*
+// JavaScript function to show the confirmation popup
+function showConfirmation() {
+    var confirmationPopup = document.getElementById("confirmationPopup");
+    confirmationPopup.style.display = "block";
+}
+
+// JavaScript function to handle the confirmation result
+function confirmAction(result) {
+    var confirmationPopup = document.getElementById("confirmationPopup");
+    confirmationPopup.style.display = "none";
+    
+    if (result === true) {
+        // User clicked Confirm
+        alert("Confirmed!");
+        return true
+    } else {
+        // User clicked Cancel
+        alert("Canceled!");
+        return false
+    }
+}
+*/

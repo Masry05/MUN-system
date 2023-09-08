@@ -126,7 +126,10 @@ app.post("/updateXP", express.json(), (req, res) => {
             } else {
                 if (selectResult.length === 1) {
                     const currentXP = selectResult[0].xp;
-                    const updatedXP = parseInt(currentXP, 10) + parseInt(xpPV, 10);
+                    let updatedXP = parseInt(currentXP, 10) + parseInt(xpPV, 10);
+                    if (updatedXP < 0){
+                        updatedXP = 0;
+                    }
 
                     // Update the database with the new total XP value
                     con.query("UPDATE members SET xp = ? WHERE id = ?", [updatedXP, id], (updateErr, updateResult) => {
