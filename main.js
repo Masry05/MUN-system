@@ -150,21 +150,40 @@ app.post("/updateXP", express.json(), (req, res) => {
     updateData(id, xpPV);
 });
 
+app.post("/resetXP", express.json(), (req, res) => {
+    const { id } = req.body;
+
+    // Function to update XP in the database
+    const resetData = (id) => {
+        // Update the database with the new total XP value
+        con.query("UPDATE members SET xp = ? WHERE id = ?", [0, id], (updateErr, updateResult) => {
+            if (updateErr) {
+                console.error("Error reset XP:", updateErr);
+                res.status(500).json({ error: "An error occurred" });
+            } else {
+                console.log("XP reseted in the database.");
+                res.json({ message: "XP updated successfully" });
+            }
+        });
+    };
+
+    // Call the updateData function to update the XP
+    resetData(id);
+});
+
 app.post("/updateUserName", express.json(), (req, res) => {
     const { id, fn, ln } = req.body;
-
-    console.log(id, "omg")
 
     // Function to update XP in the database
     const updateNames = (id, fn, ln) => {
         // Update the database with the new total XP value
         con.query("UPDATE members SET first_name = ?, last_name = ? WHERE id = ?", [fn, ln, id], (updateErr, updateResult) => {
             if (updateErr) {
-                console.error("Error updating XP:", updateErr);
+                console.error("Error updating user name:", updateErr);
                 res.status(500).json({ error: "An error occurred" });
             } else {
-                console.log("XP updated in the database.");
-                res.json({ message: "XP updated successfully" });
+                console.log("user name in the database.");
+                res.json({ message: "user na updated successfully" });
             }
         });
     };

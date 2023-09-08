@@ -8,13 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Nunito+Sans:opsz,wght@6..12,500;6..12,700;6..12,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Fetch Data</title>
+    <link rel="icon" href="icon.png" type="image/x-icon"/>
+    <title>MUN</title>
 </head>
 <body>
     <div class="add-person">
-        <input type="text" id="first-name" class="names" placeholder="Enter first name" required oninput="CheckFields(this)">
-        <input type="text" id="last-name" class="names" placeholder="Enter last name" required oninput="CheckFields(this)">
-        <button id="addNameButton" class="names-button" value="addbtn">Add Name</button>
+        <input type="text" id="first-name" class="names" placeholder="Enter first name" required oninput="CheckFields(this)" onkeydown="moving(event)">
+        <input type="text" id="last-name" class="names" placeholder="Enter last name" required oninput="CheckFields(this)" onkeydown="moving(event)">
+        <button id="addNameButton" class="names-button" value="addbtn">Add</button>
     </div>
     
     <div class="dataContainer" id="dataContainer">

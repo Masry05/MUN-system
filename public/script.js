@@ -45,6 +45,9 @@ function fetchData() {
                         <a href="#" class="btn" onclick="editName(${id})">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
+                        <a class="reset" id="${id}" onclick="resetXP(${id})">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </a>
                         <a class="delete" id="${id}" onclick="deletePerson(${id})">
                             <i class="fa-solid fa-trash-can"></i>
                         </a>
@@ -82,7 +85,7 @@ function addName() {
     const addButtonTxt = addButton.textContent;
 
     if (fn != "" && ln != ""){
-        if (addButton.textContent == "Add Name"){
+        if (addButton.textContent == "Add"){
   
             // Create an object with all the data
             const data = { id, fn, ln, xp };
@@ -109,17 +112,18 @@ function addName() {
             });
         }
         else if (addButton.textContent == "Update") {
-            alert("still")
-            /*const firstNameInput = document.getElementById("first-name");
+            //alert("still")
+            const firstNameInput = document.getElementById("first-name");
             const lastNameInput = document.getElementById("last-name");
-            const userNameInput = document.getElementById("user-name"); // Capture the user name input field
+
             const fn = firstNameInput.value.replace(/ /g, "");
             const ln = lastNameInput.value.replace(/ /g, "");
         
             const user_id = document.getElementById("addNameButton").value;
-            
+
+
             // Create an object with the person's ID, first_name, last_name, and user_name
-            const data = { id: user_id, first_name: fn, last_name: ln };
+            const data = { id: user_id, fn: fn, ln: ln };
         
             // Make an HTTP POST request to update the person's data
             fetch("/updateUserName", {
@@ -135,10 +139,11 @@ function addName() {
                 console.log(data.message);
                 // After successfully updating the data, fetch updated data
                 fetchData();
+                editBackName();
             })
             .catch(error => {
                 console.error("Error updating the data:", error);
-            });*/
+            });
         }
   
     }
@@ -206,6 +211,32 @@ function updateXP(personId) {
     }
 }
 
+function resetXP(personId) {
+
+        // Create an object with the person's ID
+        const data = { id: personId };
+
+        // Make an HTTP POST request to delete the person from the database
+        fetch("/resetXP", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display a success message or handle the response as needed
+            console.log(data.message);
+            // After successfully deleting the person, fetch updated data
+            fetchData();
+        })
+        .catch(error => {
+            console.error("Error reseting the xp:", error);
+        });
+    
+}
+
 function CheckFields(field) {
     
     const vl = field.value.replace(/ /g, "");
@@ -267,5 +298,29 @@ function editName(personId) {
     });
 }
 
+function editBackName() {
+    const addButton = document.getElementById("addNameButton");
+    addButton.textContent = "Add";
+    addButton.value = "addbtn";
+    const firstNameInput = document.getElementById("first-name");
+    const lastNameInput = document.getElementById("last-name");
+    firstNameInput.value = "";
+    lastNameInput.value = "";
+}
 
+
+function moving(event){
+    if(event.key==="Enter"){
+        const firstNameInput = document.getElementById("first-name");
+        const lastNameInput = document.getElementById("last-name");
+        if(lastNameInput.value.replace(/ /g, "")==="")
+            lastNameInput.focus();
+        else if(firstNameInput.value.replace(/ /g, "")==="")
+            firstNameInput.focus();
+        else
+            addName();
+    }
+}
+
+//document.querySelector(".names-button").addEventListener("keydown", moving(event))
 
