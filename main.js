@@ -7,9 +7,9 @@ app.use(express.static("public"));
 
 const con = mysql.createConnection({
     host:'sql8.freemysqlhosting.net',
-    user:'sql8644628',
-    password:'F2jGYKFJri',
-    database:'sql8644628',
+    user:'sql8660241',
+    password:'BbRqaU1EQj',
+    database:'sql8660241',
 })
 
 con.connect((err)=>{
